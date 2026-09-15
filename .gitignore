@@ -4,4 +4,3 @@
 # Re-include only the required files
 !README.md
 !textEditor.py
-!.gitignore
