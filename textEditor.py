@@ -72,7 +72,7 @@ def openFile():
 
 
 root = Tk()
-root.title("My Python Text Editor")
+root.title("PyNote")
 root.geometry("600x400")
 
 text = Text(root)
