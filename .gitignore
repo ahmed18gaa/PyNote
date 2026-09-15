@@ -1,9 +1,11 @@
-venv/
-__pycache__/
-*.pyc
-build/
-dist/
-*.spec
-.DS_Store
-dmg/
-PyNote.iconset/
+# Hide everything by default
+*
+
+# Re-include only the required files
+!README.md
+!textEditor.py
+!PyNote.png
+!PyNote.ico
+!PyNote.ico
+!.github
+!LICENSE
