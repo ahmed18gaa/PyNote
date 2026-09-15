@@ -5,6 +5,5 @@ build/
 dist/
 *.spec
 .DS_Store
-.github/
 dmg/
 PyNote.iconset/
