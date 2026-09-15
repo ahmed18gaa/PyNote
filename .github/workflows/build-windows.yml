@@ -28,19 +28,11 @@ jobs:
 
       - name: Build PyNote
         run: |
-          pyinstaller ^
-            --windowed ^
-            --name "PyNote" ^
-            --icon "PyNote.ico" ^
-            --clean ^
-            --noconfirm ^
-            textEditor.py
+          pyinstaller --windowed --name "PyNote" --icon "PyNote.ico" --clean --noconfirm textEditor.py
 
       - name: Create ZIP
         run: |
-          Compress-Archive `
-            -Path "dist\PyNote\*" `
-            -DestinationPath "PyNote-1.0.0-Windows.zip"
+          Compress-Archive -Path "dist\PyNote\*" -DestinationPath "PyNote-1.0.0-Windows.zip"
 
       - name: Upload Windows build
         uses: actions/upload-artifact@v4
