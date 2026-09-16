@@ -1,4 +1,4 @@
-# Simple Text Editor
+# PyNote
 
 A basic desktop text editor built with Python and Tkinter.
 
