@@ -1,7 +1,9 @@
 # PyNote
 
 A basic desktop text editor built with Python and Tkinter.
-## Website: 
+
+## Website: https://ahmed18gaa.github.io/PyNote/
+
 ## Features
 
 - Create a new text file
