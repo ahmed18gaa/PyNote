@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="PyNote — a simple and lightweight text editor built with Python and Tkinter."
+    />
+    <title>PyNote — Simple Text Editor</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <a class="brand" href="#">
+        <span class="brand-mark">P</span>
+        <span>PyNote</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+        <a href="#download">Download</a>
+        <a
+          href="https://github.com/ahmed18gaa/PyNote"
+          target="_blank"
+          rel="noopener"
+          >GitHub</a
+        >
+      </nav>
+
+      <button class="menu-button" id="menuButton" aria-label="Open menu">
+        ☰
+      </button>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-content">
+          <div class="eyebrow">PYTHON • TKINTER • OPEN SOURCE</div>
+          <h1>A simple text editor.<br /><span>Made with Python.</span></h1>
+          <p class="hero-text">
+            PyNote is a lightweight desktop text editor focused on the
+            essentials: create, open, edit, and save your text without
+            unnecessary complexity.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button primary" href="#download">Download PyNote</a>
+            <a
+              class="button secondary"
+              href="https://github.com/ahmed18gaa/PyNote"
+              target="_blank"
+              rel="noopener"
+            >
+              View on GitHub
+            </a>
+          </div>
+
+          <p class="platforms">Available for macOS and Windows</p>
+        </div>
+
+        <div class="editor-window" aria-label="PyNote preview">
+          <div class="window-bar">
+            <div class="window-dots"><i></i><i></i><i></i></div>
+            <span>PyNote</span>
+          </div>
+          <div class="editor-menu">
+            File&nbsp;&nbsp;&nbsp; Edit&nbsp;&nbsp;&nbsp; Help
+          </div>
+          <div class="editor-body">
+            <span class="line-number">1</span>
+            <span>Welcome to <strong>PyNote</strong>.</span>
+            <span class="line-number">2</span>
+            <span>Write something simple.</span>
+            <span class="line-number">3</span>
+            <span class="cursor"></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="features">
+        <div class="section-heading">
+          <span>FEATURES</span>
+          <h2>Everything you need. Nothing you don't.</h2>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <div class="feature-icon">＋</div>
+            <h3>New Files</h3>
+            <p>
+              Start a fresh document with one click and keep your workspace
+              simple.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">↗</div>
+            <h3>Open & Edit</h3>
+            <p>
+              Open your text files, make changes, and continue where you left
+              off.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">↓</div>
+            <h3>Save Easily</h3>
+            <p>Save your work or choose Save As to create a new text file.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="about-section" id="about">
+        <div>
+          <span class="section-label">ABOUT Pynote</span>
+          <h2>Small project.<br />Real application.</h2>
+        </div>
+        <div class="about-copy">
+          <p>
+            PyNote started as a simple Python and Tkinter project and grew into
+            a packaged desktop application for macOS and Windows.
+          </p>
+          <div class="tech-list">
+            <span>Python</span>
+            <span>Tkinter</span>
+            <span>PyInstaller</span>
+            <span>GitHub</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="download-section" id="download">
+        <div class="download-box">
+          <span class="section-label">DOWNLOAD</span>
+          <h2>Get PyNote</h2>
+          <p>Choose your platform and start writing.</p>
+
+          <div class="download-actions">
+            <a class="download-card" href="#" id="macDownload">
+              <strong> macOS</strong>
+              <small>PyNote-1.0.0.dmg</small>
+            </a>
+
+            <a class="download-card" href="#" id="windowsDownload">
+              <strong>⊞ Windows</strong>
+              <small>PyNote-1.0.0-Windows.zip</small>
+            </a>
+          </div>
+
+          <!-- <p class="download-note">
+            Replace the download links in <code>script.js</code> with your
+            GitHub Release asset URLs.
+          </p> -->
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-brand">
+        <span class="brand-mark small">P</span>
+        <span>PyNote</span>
+      </div>
+      <p>Built with Python & Tkinter.</p>
+      <a
+        href="https://github.com/ahmed18gaa/PyNote"
+        target="_blank"
+        rel="noopener"
+        >GitHub →</a
+      >
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
