@@ -3,7 +3,7 @@
 
 # Re-include only the required files
 !README.md
-!textEditor.py
+!pyNote.py
 !LICENSE
 !.gitignore
 !index.html
