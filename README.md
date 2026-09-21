@@ -1,6 +1,6 @@
 # PyNote
 
-A basic desktop text editor built with Python and Tkinter.
+A basic desktop text editor built with Python and wxPython.
 
 ## Website: https://ahmed18gaa.github.io/PyNote/
 
@@ -15,20 +15,26 @@ A basic desktop text editor built with Python and Tkinter.
 ## Requirements
 
 - Python 3
-- Tkinter (included with most Python installations on Windows and macOS)
+- wxPython
+
+Install wxPython with:
+
+```bash
+pip install wxPython==4.3.1
+```
 
 ## Run the app
 
 From the project folder, run:
 
 ```bash
-python textEditor.py
+python pyNote.py
 ```
 
 ## Project files
 
-- `textEditor.py` — main application code
+- `pyNote.py` — main application code
 
 ## Notes
 
-This editor is intentionally minimal and is a good starting point for learning GUI programming with Tkinter.
+This editor is intentionally minimal and is a good starting point for learning GUI programming with wxPython.
