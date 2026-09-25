@@ -1,7 +1,7 @@
-# Hide everything by default
+# Ignore everything by default
 *
 
-# Re-include only the required files
+# Re-include required project files
 !README.md
 !pyNote.py
 !LICENSE
@@ -9,4 +9,10 @@
 !index.html
 !style.css
 !script.js
-!.github
+
+# Re-include GitHub Actions
+!/.github/
+!/.github/**
+
+# Never upload macOS metadata
+.DS_Store
