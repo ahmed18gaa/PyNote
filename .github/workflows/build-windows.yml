@@ -21,7 +21,7 @@ jobs:
         with:
           python-version: "3.14"
 
-      - name: Install dependencies
+      - name: Install PyInstaller
         run: |
           python -m pip install --upgrade pip
           python -m pip install pyinstaller
@@ -31,8 +31,12 @@ jobs:
         run: |
           pyinstaller --windowed --name "PyNote" --icon "PyNote.ico" --clean --noconfirm pyNote.py
 
+      - name: Create ZIP
+        run: |
+          Compress-Archive -Path "dist\PyNote\*" -DestinationPath "PyNote-1.0.1-Windows.zip"
+
       - name: Upload Windows build
         uses: actions/upload-artifact@v4
         with:
-          name: PyNote-1.0.1-Windows
-          path: dist/PyNote/
+          name: PyNote-Windows.zip
+          path: PyNote-1.0.1-Windows.zip
