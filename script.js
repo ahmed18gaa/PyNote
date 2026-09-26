@@ -17,12 +17,12 @@ if (menuButton && navLinks) {
 
 if (macDownload) {
   macDownload.href =
-    "https://github.com/ahmed18gaa/PyNote/releases/download/v1.0.1/PyNote-1.0.1.dmg";
+    "https://github.com/ahmed18gaa/PyNote/releases/download/v1.0.2/PyNote-1.0.2.dmg";
 }
 
 if (windowsDownload) {
   windowsDownload.href =
-    "https://github.com/ahmed18gaa/PyNote/releases/download/v1.0.1/PyNote-1.0.1-Windows.zip";
+    "https://github.com/ahmed18gaa/PyNote/releases/download/v1.0.2/PyNote-1.0.2-Windows.zip";
 }
 
 // Uncomment and edit when the GitHub Release is ready:
