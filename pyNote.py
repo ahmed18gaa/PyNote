@@ -8,31 +8,52 @@ faces = {
     'mono': 'Courier New',
     'helv': 'Arial',
     'other': 'Comic Sans MS',
-    'size': 10,
-    'size2': 8,
+    'size': 14,
 }
 
 class MainWindow(wx.Frame):
     def __init__(self, parent, title):
+        wx.Frame.__init__(self, parent, title=title, size=(800, 600))
+
         self.dirname = ''
         self.filename = ''
-        self.leftMarginWidth = 25
+        self.leftMarginWidth = 35
         self.lineNumbersEnabled = True
 
-        wx.Frame.__init__(self, parent, title=title, size=(800,600))
+        # Initialize text editor control
         self.control = stc.StyledTextCtrl(self, style=wx.TE_MULTILINE | wx.TE_WORDWRAP)
 
-        self.control.CmdKeyAssign(ord('='), stc.STC_SCMOD_CTRL, stc.STC_CMD_ZOOMIN) # (Ctrl or command) + (=) to zoom in
-        self.control.CmdKeyAssign(ord('-'), stc.STC_SCMOD_CTRL, stc.STC_CMD_ZOOMOUT) # (Ctrl or command) + (-) to zoom out
+        # Apply BoxSizer so editor fills the entire window
+        sizer = wx.BoxSizer(wx.VERTICAL)
+        sizer.Add(self.control, 1, wx.EXPAND)
+        self.SetSizer(sizer)
 
+        # Reset all styles and force light foreground (white) & dark background
+        self.control.StyleResetDefault()
+        self.control.StyleSetSpec(stc.STC_STYLE_DEFAULT, f"face:{faces['mono']},size:{faces['size']},fore:#FFFFFF,back:#1E1E1E")
+        self.control.StyleClearAll()
+
+        # Set specific line number style
+        self.control.StyleSetSpec(stc.STC_STYLE_LINENUMBER, f"face:{faces['mono']},size:10,fore:#AAAAAA,back:#2B2B2B")
+
+        # Set caret/cursor color to white so it's clearly visible
+        self.control.SetCaretForeground(wx.Colour(255, 255, 255))
+
+        # Zoom keyboard shortcuts
+        self.control.CmdKeyAssign(ord('='), stc.STC_SCMOD_CTRL, stc.STC_CMD_ZOOMIN)
+        self.control.CmdKeyAssign(ord('-'), stc.STC_SCMOD_CTRL, stc.STC_CMD_ZOOMOUT)
+
+        # Margins & Line Numbers
         self.control.SetViewWhiteSpace(False)
-        self.control.SetMargins(5,0)
-        self.control.SetMarginType(1,stc.STC_MARGIN_NUMBER)
+        self.control.SetMargins(5, 0)
+        self.control.SetMarginType(1, stc.STC_MARGIN_NUMBER)
         self.control.SetMarginWidth(1, self.leftMarginWidth)
 
+        # Status Bar
         self.CreateStatusBar()
         self.StatusBar.SetBackgroundColour((220, 220, 220))
 
+        # Menu Bar setup
         filemenu = wx.Menu()
         menuNew = filemenu.Append(wx.ID_NEW, "&New", "Create a new document")
         menuOpen = filemenu.Append(wx.ID_OPEN, "&Open", "Open an existing document")
@@ -65,6 +86,7 @@ class MainWindow(wx.Frame):
         menuBar.Append(helpMenu, "&Help")
         self.SetMenuBar(menuBar)
 
+        # Menu bindings
         self.Bind(wx.EVT_MENU, self.OnNew, menuNew)
         self.Bind(wx.EVT_MENU, self.OnOpen, menuOpen)
         self.Bind(wx.EVT_MENU, self.OnSave, menuSave)
@@ -83,7 +105,13 @@ class MainWindow(wx.Frame):
         self.Bind(wx.EVT_MENU, self.OnHowTo, menuHowTo)
         self.Bind(wx.EVT_MENU, self.OnAbout, menuAbout)
 
+        # Key & Mouse bindings for cursor updates
+        self.control.Bind(wx.EVT_KEY_UP, self.UpdateLineCol)
+        self.control.Bind(wx.EVT_LEFT_UP, self.UpdateLineCol)
+        self.control.Bind(wx.EVT_CHAR, self.OnCharEvent)
+
         self.Show()
+        self.UpdateLineCol()
 
     def OnNew(self, e):
         self.filename = ''
@@ -174,6 +202,35 @@ class MainWindow(wx.Frame):
         dig.ShowModal()
         dig.Destroy()
 
+    # Update the status bar with the current line and column numbers
+    def UpdateLineCol(self, event=None):
+        line = self.control.GetCurrentLine() + 1
+        column = self.control.GetColumn(self.control.GetCurrentPos())
+        stat = "Line: %s, Column: %s" % (line, column)
+        self.StatusBar.SetStatusText(stat, 0)
+        if event:
+            event.Skip()
+
+    def OnCharEvent(self, event):
+        keycode = event.GetKeyCode()
+        altDown = event.AltDown() or event.MetaDown()  # Supports Option key on macOS
+        
+        if keycode == 14:  # (Ctrl | control)+N
+            self.OnNew(event)
+        elif keycode == 15:  # (Ctrl | control)+O
+            self.OnOpen(event)
+        elif keycode == 19:  # (Ctrl | control)+S
+            self.OnSave(event)
+        elif (altDown and (keycode == 115 or keycode == 83 or keycode == 223)):  # Alt/Option + S (115='s', 83='S', 223='ß' on macOS)
+            self.OnSaveAs(event)
+        elif keycode == 23:  # (Ctrl | control)+W
+            self.OnClose(event)
+        elif keycode == 340:  # F1 | fn+F1
+            self.OnHowTo(event)
+        elif keycode == 341:  # F2 | fn+F2
+            self.OnAbout(event)
+        else:
+            event.Skip()
 
 app = wx.App()
 frame = MainWindow(None, "PyNote")
